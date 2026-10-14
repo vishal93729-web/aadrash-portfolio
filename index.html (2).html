@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1020">
+<title>Aadrash Kumar | Portfolio</title>
+<style>
+:root { color-scheme: light dark; --bg: light-dark(#f6f7fb,#090d18); --surface: light-dark(#ffffff,#111827); --surface2: light-dark(#eef1f8,#172033); --text: light-dark(#182033,#f4f6ff); --muted: light-dark(#5e667a,#a6b0c7); --border: light-dark(#dfe4ef,#29344b); --accent: #7c6cff; --accent2: #27c8b7; --glow: color-mix(in srgb, var(--accent) 18%, transparent); }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+#app { min-height: 100vh; width: 100%; background: var(--bg); border-radius: 0; }
+.wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; }
+.brand { font-weight: 850; letter-spacing: -.04em; font-size: 1.12rem; }
+.brand span { color: var(--accent); }
+.navlinks { display: flex; gap: 24px; align-items: center; color: var(--muted); font-size: .92rem; }
+.navlinks a:hover, .textlink:hover { color: var(--accent); }
+.menu { display: none; background: var(--surface); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 8px 12px; }
+.hero { display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 50px; padding: 82px 0 92px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); padding: 7px 12px; border-radius: 999px; font-size: .82rem; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent2) 18%, transparent); }
+h1 { font-size: clamp(2.8rem, 6.5vw, 5.35rem); line-height: 1.02; letter-spacing: -.065em; margin: 24px 0 20px; }
+.gradient { background: linear-gradient(100deg,var(--accent),var(--accent2)); color: transparent; background-clip: text; -webkit-background-clip: text; }
+.hero p { max-width: 640px; font-size: 1.08rem; color: var(--muted); margin: 0 0 28px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; justify-content: center; align-items: center; gap: 9px; padding: 12px 18px; border-radius: 12px; font-weight: 700; font-size: .94rem; border: 1px solid var(--border); transition: transform .18s ease, opacity .18s ease; cursor: pointer; }
+.btn:hover { transform: translateY(-2px); }
+.primary { background: var(--accent); color: white; border-color: var(--accent); }
+.secondary { background: var(--surface); }
+.hero-card { background: radial-gradient(circle at 15% 10%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 40%), var(--surface); border: 1px solid var(--border); border-radius: 28px; padding: 25px; box-shadow: 0 25px 70px #00000012; transform: rotate(1.5deg); }
+.hero-card { box-shadow: 0 25px 70px #00000018, 0 0 0 1px var(--glow); }
+.avatar { width: 84px; height: 84px; display: grid; place-items: center; border-radius: 24px; background: linear-gradient(135deg,var(--accent),var(--accent2)); color: white; font-size: 2rem; font-weight: 900; letter-spacing: -.06em; }
+.hero-card h2 { margin: 22px 0 4px; font-size: 1.45rem; }
+.hero-card p { font-size: .94rem; margin: 0; }
+.mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+.mini { background: var(--surface2); border-radius: 14px; padding: 14px; }
+.mini strong { display: block; font-size: 1.18rem; }
+.mini span { color: var(--muted); font-size: .78rem; }
+section { padding: 66px 0; }
+.section-head { margin-bottom: 28px; }
+.kicker { color: var(--accent); text-transform: uppercase; font-weight: 800; letter-spacing: .13em; font-size: .76rem; }
+h2.section-title { font-size: clamp(1.9rem,4vw,2.75rem); line-height: 1.15; letter-spacing: -.045em; margin: 8px 0 10px; }
+.section-intro { color: var(--muted); max-width: 650px; margin: 0; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; }
+.panel h3 { margin: 0 0 10px; font-size: 1.08rem; }
+.panel p { color: var(--muted); margin: 0; }
+.skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.chip { border: 1px solid var(--border); background: var(--surface2); border-radius: 10px; padding: 8px 11px; font-size: .86rem; font-weight: 650; }
+.project-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.project { display: flex; flex-direction: column; min-height: 260px; }
+.project-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.project-icon { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font-size: 1.35rem; background: color-mix(in srgb, var(--accent) 14%, var(--surface2)); }
+.project small { color: var(--muted); }
+.project h3 { font-size: 1.2rem; margin: 0 0 9px; }
+.project p { color: var(--muted); font-size: .93rem; margin: 0 0 18px; }
+.project .skills { margin-top: auto; }
+.note { font-size: .82rem; color: var(--muted); margin-top: 16px; }
+.timeline { display: grid; grid-template-columns: 20px 1fr; gap: 16px; }
+.timeline-mark { position: relative; display: flex; justify-content: center; }
+.timeline-mark:before { content: ''; width: 10px; height: 10px; margin-top: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 15%, transparent); }
+.timeline-mark:after { content: ''; position: absolute; top: 25px; bottom: -18px; width: 1px; background: var(--border); }
+.timeline:last-child .timeline-mark:after { display: none; }
+.timeline-content { padding-bottom: 28px; }
+.timeline-content h3 { margin: 0 0 5px; }
+.timeline-content p { margin: 0; color: var(--muted); }
+.contact-box { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px; background: linear-gradient(120deg,color-mix(in srgb,var(--accent) 14%,var(--surface)),var(--surface)); border: 1px solid var(--border); padding: 32px; border-radius: 24px; }
+.contact-box p { color: var(--muted); max-width: 620px; margin: 10px 0 0; }
+.contact-details { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: 18px; color: var(--text); font-weight: 650; }
+.contact-details a { display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border: 1px solid var(--border); background: var(--surface); border-radius: 12px; }
+.contact-details a:hover { border-color: var(--accent); color: var(--accent); }
+footer { padding: 28px 0 36px; border-top: 1px solid var(--border); color: var(--muted); font-size: .86rem; }
+.footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+@media (max-width: 780px) { .hero { grid-template-columns: 1fr; gap: 28px; padding: 56px 0 64px; } .hero-card { max-width: 430px; transform: none; } .project-grid { grid-template-columns: 1fr 1fr; } .navlinks { display: none; position: absolute; top: 68px; left: 20px; right: 20px; z-index: 4; flex-direction: column; align-items: stretch; gap: 0; padding: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; } .navlinks.open { display: flex; } .navlinks a { padding: 11px; } .menu { display: block; } }
+@media (max-width: 540px) { .wrap { width: min(100% - 28px,1120px); } .project-grid, .about-grid { grid-template-columns: 1fr; } .contact-box { grid-template-columns: 1fr; padding: 24px; } section { padding: 48px 0; } h1 { font-size: 3.2rem; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="wrap">
+    <nav aria-label="Main navigation">
+      <a class="brand" href="#home">Aadrash<span>.</span></a>
+      <button class="menu" id="menuBtn" aria-expanded="false" aria-controls="navlinks">Menu ☰</button>
+      <div class="navlinks" id="navlinks">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#journey">Journey</a><a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="wrap hero" id="home">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Based in Surat, Gujarat · Open to opportunities</div>
+        <h1>Hello, I'm<br><span class="gradient">Aadrash Kumar.</span></h1>
+        <p>A Computer Science graduate based in Surat, Gujarat, interested in cloud computing, web development, and building practical digital solutions. I enjoy learning by doing and turning ideas into working projects.</p>
+        <div class="actions"><a class="btn primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#contact">Get in touch</a><a class="btn secondary" href="tel:+919262644986">☎ Call me</a></div>
+      </div>
+      <aside class="hero-card" aria-label="Profile summary">
+        <div class="avatar">AK</div>
+        <h2>Aadrash Kumar</h2>
+        <p>Computer Science Graduate · Cloud & Web Technology Enthusiast</p>
+        <div class="mini-grid"><div class="mini"><strong>2026</strong><span>Degree completed</span></div><div class="mini"><strong>Build</strong><span>Learn by doing</span></div></div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">A little about me</div><h2 class="section-title">Curious by nature. Practical by approach.</h2><p class="section-intro">I'm building my skills across cloud technologies and modern websites, while staying open to opportunities where I can contribute, collaborate, and keep growing.</p></div>
+        <div class="about-grid">
+          <article class="panel"><h3>My background</h3><p>I completed my technical degree in Computer Science and Engineering in 2026. My learning interests include cloud infrastructure, website development, backend services, and solving real-world problems with technology.</p></article>
+          <article class="panel"><h3>What drives me</h3><p>I like clear goals, hands-on learning, and making useful things. I'm focused on strengthening my fundamentals, communicating well, and growing through projects and work experience.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">Toolkit</div><h2 class="section-title">Skills I'm developing</h2><p class="section-intro">A snapshot of my learning areas. I keep expanding this list as I complete more hands-on work.</p></div>
+        <div class="panel"><h3>Cloud & infrastructure</h3><div class="skills"><span class="chip">AWS fundamentals</span><span class="chip">Amazon S3</span><span class="chip">Amazon EC2</span><span class="chip">Load balancing concepts</span></div><h3 style="margin-top:24px">Web & development</h3><div class="skills"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Responsive design</span><span class="chip">Backend concepts</span><span class="chip">Supabase basics</span><span class="chip">Git / VS Code workflow</span></div><h3 style="margin-top:24px">Professional skills</h3><div class="skills"><span class="chip">Communication</span><span class="chip">Problem solving</span><span class="chip">Teamwork</span><span class="chip">Continuous learning</span></div></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">Selected work</div><h2 class="section-title">Ideas I'm bringing to life</h2><p class="section-intro">These project cards reflect the concepts I've explored. Update each card with your finished demo, repository, and screenshots as your work progresses.</p></div>
+        <div class="project-grid">
+          <article class="panel project"><div class="project-top"><div class="project-icon">☁️</div><small>Cloud learning</small></div><h3>AWS Static Website</h3><p>A learning project exploring how to host a static website with Amazon S3 and understand the basics of cloud-based delivery.</p><div class="skills"><span class="chip">AWS S3</span><span class="chip">Web hosting</span></div></article>
+          <article class="panel project"><div class="project-top"><div class="project-icon">🏗️</div><small>Website concept</small></div><h3>Construction Website</h3><p>A responsive online presence for a construction business, with service information, project highlights, and a clear contact path.</p><div class="skills"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div></article>
+          <article class="panel project"><div class="project-top"><div class="project-icon">🛍️</div><small>App concept</small></div><h3>Shopkaro</h3><p>An e-commerce learning concept inspired by online marketplaces, with a focus on product browsing, cart flow, and backend integration.</p><div class="skills"><span class="chip">Frontend</span><span class="chip">Database concepts</span></div></article>
+        </div>
+        <p class="note">Note: These are presented as learning projects/concepts, not as claims of completed or deployed production applications.</p>
+      </div>
+    </section>
+
+    <section id="journey">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">My journey</div><h2 class="section-title">Learning, building, improving.</h2></div>
+        <div class="panel">
+          <div class="timeline"><div class="timeline-mark"></div><div class="timeline-content"><h3>Computer Science & Engineering</h3><p>Completed technical degree · 2026</p><p style="margin-top:7px">Built a foundation in computing and explored practical technology projects.</p></div></div>
+          <div class="timeline"><div class="timeline-mark"></div><div class="timeline-content"><h3>Cloud and web project practice</h3><p>Hands-on learning</p><p style="margin-top:7px">Exploring AWS, responsive websites, and beginner-friendly backend options through guided projects.</p></div></div>
+          <div class="timeline"><div class="timeline-mark"></div><div class="timeline-content"><h3>Next step</h3><p>Ready to grow</p><p style="margin-top:7px">Looking for opportunities to apply my skills, learn from experienced teams, and contribute consistently.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap"><div class="contact-box"><div><div class="kicker">Let's connect</div><h2 class="section-title">Have an opportunity or idea?</h2><p>I'd be happy to connect about entry-level opportunities, projects, or ways to learn and build together.</p><div class="contact-details"><a href="tel:+919262644986" aria-label="Call Aadrash Kumar">☎ <span>+91 92626 44986</span></a><a href="https://wa.me/919262644986" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">✆ <span>WhatsApp me</span></a><span>📍 Surat, Gujarat, India</span></div></div><div class="actions"><a class="btn primary" href="tel:+919262644986">Call me ↗</a><a class="btn secondary" href="https://wa.me/919262644986" target="_blank" rel="noopener noreferrer">WhatsApp</a><a class="btn secondary" href="mailto:your.email@example.com">Email me</a></div></div></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> Aadrash Kumar</span><span>Designed with curiosity and a builder mindset.</span></div></footer>
+</div>
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const navlinks = document.getElementById('navlinks');
+menuBtn.addEventListener('click', () => {
+  const isOpen = navlinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(isOpen));
+});
+navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  navlinks.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+}));
+document.getElementById('year').textContent = new Date().getFullYear();
+const email = 'your.email@example.com';
+</script>
+</body>
+</html>
